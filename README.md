@@ -1,6 +1,6 @@
 # Recipe Book — Frontend
 
-A simple recipe browser for your Spring Boot Recipe API.  
+A simple recipe browser for your Recipe API (Flask or Spring Boot).  
 **This is not a frontend course** — you don’t need to understand the JavaScript.
 
 This repo deploys to **Azure Static Web Apps** through your CI/CD pipeline.
@@ -11,7 +11,7 @@ This repo deploys to **Azure Static Web Apps** through your CI/CD pipeline.
 
 Push your code — the pipeline deploys this site for you.
 
-To point the app at your Spring Boot API, set the **environment variable** for the API URL.  
+To point the app at your API, set the **environment variable** for the API URL.  
 **Follow the workbook** for the exact variable name and where to set it in Azure.
 
 You do **not** need to worry about CORS — that’s already handled.
@@ -20,8 +20,15 @@ You do **not** need to worry about CORS — that’s already handled.
 
 ## Run locally (optional)
 
-1. Start your Spring Boot API (usually port **8080**)
-2. Open **`js/config.js`** — `API_BASE` should already be `http://localhost:8080`
+1. Start **your** API (depends on your track):
+
+   | Track | Port | `API_BASE` in `js/config.js` |
+   |-------|------|------------------------------|
+   | Flask | **5000** | `http://localhost:5000` |
+   | Spring Boot | **8080** | `http://localhost:8080` |
+
+2. Open **`js/config.js`** and set `API_BASE` to match your track (see table above).
+
 3. Serve this folder (don’t double-click `index.html`):
 
    ```bash
@@ -41,6 +48,8 @@ You do **not** need to worry about CORS — that’s already handled.
 
 The API returns recipe data and an image **path** (e.g. `/images/recipe-1.jpg`). This site serves the actual photos from its own `images/` folder.
 
+Both the Flask and Spring Boot APIs use the same endpoints — this frontend works with either one.
+
 ---
 
 ## Project layout
@@ -51,7 +60,7 @@ css/style.css   ← styles
 js/config.js    ← API URL for local dev (deploy uses env var — see workbook)
 js/app.js       ← app logic
 images/         ← recipe photos (recipe-1.jpg … recipe-18.jpg)
-openapi.json    ← API reference (optional)
+openapi.json    ← Spring Boot API reference (optional)
 ```
 
 ---
@@ -60,7 +69,7 @@ openapi.json    ← API reference (optional)
 
 | Problem | Fix |
 |---------|-----|
-| “Could not reach the API” (local) | Is Spring Boot running? Is `js/config.js` set to `http://localhost:8080`? |
+| “Could not reach the API” (local) | Is your API running? Does `js/config.js` use the right port — **5000** (Flask) or **8080** (Spring Boot)? |
 | “Could not reach the API” (deployed) | Check the API URL environment variable — see **workbook** |
 | Images missing | Are `images/recipe-1.jpg` etc. included in the deployed site? |
 

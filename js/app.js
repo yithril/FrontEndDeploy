@@ -199,7 +199,7 @@ async function fetchRecipes(query = "") {
     if (error.name === "AbortError") return;
 
     listEl.hidden = true;
-    statusEl.textContent = `Could not reach the API at ${API_BASE}. Is Spring Boot running?`;
+    statusEl.textContent = `Could not reach the API at ${API_BASE}. Is your API running?`;
     statusEl.classList.add("error");
     console.error(error);
   }
