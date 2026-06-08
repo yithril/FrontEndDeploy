@@ -1,0 +1,13 @@
+# One-time image script (may contain API key)
+scripts/generate-images.js
+
+# Generated during image creation — not needed for the app
+images/manifest.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
